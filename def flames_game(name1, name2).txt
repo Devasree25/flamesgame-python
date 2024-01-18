@@ -1,0 +1,29 @@
+def flames_game(name1, name2):
+    # Convert names to lowercase and remove spaces
+    name1 = name1.lower().replace(" ", "")
+    name2 = name2.lower().replace(" ", "")
+
+    # Create a dictionary to store the frequency of each character in both names
+    char_count = {}
+    for char in name1:
+        char_count[char] = char_count.get(char, 0) + 1
+    for char in name2:
+        char_count[char] = char_count.get(char, 0) + 1
+
+    # Count the number of common characters
+    common_chars = sum(1 for count in char_count.values() if count > 1)
+
+    # Define the flames categories
+    categories = ["Friends", "Lovers", "Admirers", "Marriage", "Enemies", "Siblings"]
+
+    # Calculate the result index
+    result_index = (len(name1) + len(name2) - common_chars) % len(categories)
+
+    # Print the result
+    result = categories[result_index]
+    print(f"{name1} and {name2} are {result}")
+
+# Example usage
+name1 = input("Enter the first name: ")
+name2 = input("Enter the second name: ")
+flames_game(name1, name2)
